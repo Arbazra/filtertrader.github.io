@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,9 +25,10 @@
     :root {
       --primary-color: #0077b6;
       --secondary-color: #00b4d8;
-      --dark-color: #03045e;
-      --light-bg: #f8f9fa;
-      --text-color: #333333;
+      --accent-color: #90e0ef;
+      --dark-color: #023e8a;
+      --light-bg: #f4f9ff;
+      --text-color: #2b2d42;
     }
 
     body {
@@ -39,26 +40,33 @@
 
     /* Navbar Modernization */
     .navbar {
-      background: rgba(3, 4, 94, 0.95) !important;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      background: rgba(2, 62, 138, 0.85) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      padding: 15px 0;
     }
     
     .navbar-brand {
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1px;
       color: #fff !important;
+      font-size: 1.5rem;
+    }
+
+    .navbar-brand i {
+      color: var(--secondary-color);
     }
 
     .nav-link {
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-      margin: 0 10px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin: 0 12px;
       position: relative;
-      color: rgba(255, 255, 255, 0.8) !important;
+      color: rgba(255, 255, 255, 0.85) !important;
       transition: color 0.3s ease;
     }
 
@@ -66,12 +74,38 @@
       color: var(--secondary-color) !important;
     }
 
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--secondary-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
     /* Hero Carousel */
     .carousel-item {
-      height: 90vh;
-      min-height: 500px;
+      height: 100vh;
+      min-height: 600px;
       background: #000;
       position: relative;
+    }
+
+    .carousel-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(2, 62, 138, 0.6), rgba(0, 0, 0, 0.7));
+      z-index: 1;
     }
 
     .carousel-item img {
@@ -81,25 +115,55 @@
       min-width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.6; /* Dark overlay for text readability */
       transform: scale(1.05);
-      transition: transform 10s ease;
+      transition: transform 12s ease-in-out;
     }
     
     .carousel-item.active img {
-      transform: scale(1); /* Subtle zoom-out effect */
+      transform: scale(1);
     }
 
     .carousel-caption {
-      bottom: 30%;
+      bottom: 50%;
+      transform: translateY(50%);
       z-index: 2;
     }
 
     .carousel-caption h2 {
-      font-size: 4rem;
-      font-weight: 700;
+      font-size: 4.5rem;
+      font-weight: 800;
       text-transform: uppercase;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      letter-spacing: 2px;
+      text-shadow: 2px 4px 10px rgba(0,0,0,0.6);
+      margin-bottom: 20px;
+    }
+    
+    .carousel-caption p {
+      font-weight: 300;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    .hero-btn {
+      background: var(--secondary-color);
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .hero-btn:hover {
+      background: #fff;
+      color: var(--dark-color);
+      box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
+      transform: translateY(-3px);
     }
 
     /* General Section Styling */
@@ -109,11 +173,12 @@
 
     .section-title {
       text-align: center;
-      margin-bottom: 60px;
-      font-weight: 700;
+      margin-bottom: 70px;
+      font-weight: 800;
       color: var(--dark-color);
       position: relative;
       padding-bottom: 15px;
+      font-size: 2.5rem;
     }
 
     .section-title::after {
@@ -122,91 +187,193 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--secondary-color);
-      border-radius: 2px;
+      width: 100px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      border-radius: 5px;
     }
 
     /* About Section */
     .about-text {
       font-size: 1.1rem;
-      line-height: 1.8;
+      line-height: 1.9;
       color: #555;
+      margin-bottom: 20px;
     }
     
-    .about-img {
+    .about-img-wrapper {
+      position: relative;
+      padding: 20px;
+    }
+
+    .about-img-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80%;
+      height: 80%;
+      background: var(--accent-color);
       border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .about-img {
+      position: relative;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      z-index: 1;
+      transition: transform 0.4s ease;
     }
     
     .about-img:hover {
-      transform: translateY(-10px);
+      transform: translateY(-10px) scale(1.02);
     }
 
     /* Products Cards */
     .product-card {
       background: #fff;
       border: none;
-      border-radius: 15px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       transition: all 0.4s ease;
       height: 100%;
+      position: relative;
     }
 
     .product-card:hover {
       transform: translateY(-15px);
-      box-shadow: 0 20px 40px rgba(0, 119, 182, 0.15);
+      box-shadow: 0 25px 50px rgba(0, 119, 182, 0.2);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--secondary-color);
+      color: #fff;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .product-card .img-wrapper {
+      overflow: hidden;
+      position: relative;
     }
 
     .product-card img {
-      height: 250px;
+      height: 260px;
+      width: 100%;
       object-fit: cover;
-      border-bottom: 3px solid var(--secondary-color);
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease;
     }
 
     .product-card:hover img {
-      transform: scale(1.05);
+      transform: scale(1.1);
+    }
+
+    .card-body {
+      padding: 25px;
     }
 
     .card-title {
       color: var(--dark-color);
       font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
     }
 
     .card-text {
-      color: #666;
-      font-size: 0.95rem;
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
     }
 
     .list-group-item {
       font-size: 0.9rem;
       border-color: rgba(0,0,0,0.05);
-      padding: 12px 20px;
+      padding: 12px 25px;
+      background: transparent;
+      color: #555;
     }
     
+    .price-wrapper {
+      padding: 20px 25px;
+      background: var(--light-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
     .price-tag {
-      font-weight: 700;
+      font-weight: 800;
       color: var(--primary-color);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .btn-inquire {
+      background: var(--primary-color);
+      color: #fff;
+      border-radius: 8px;
+      padding: 8px 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-inquire:hover {
+      background: var(--dark-color);
+      color: #fff;
     }
 
     /* Contact Section */
+    .contact {
+      background: url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=2000') center/cover fixed;
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(2, 62, 138, 0.85);
+    }
+
+    .contact .section-title {
+      color: #fff;
+    }
+
+    .contact .section-title::after {
+      background: var(--secondary-color);
+    }
+
     .contact-wrapper {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
       border-radius: 20px;
-      padding: 50px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      padding: 50px 40px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
     .contact-icon {
-      font-size: 4rem;
+      font-size: 4.5rem;
       color: #25D366; /* WhatsApp Green */
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      filter: drop-shadow(0 10px 15px rgba(37, 211, 102, 0.3));
     }
 
     /* Floating WhatsApp Button (Animated) */
@@ -216,14 +383,14 @@
       right: 40px;
       background-color: #25D366;
       color: white;
-      width: 60px;
-      height: 60px;
+      width: 65px;
+      height: 65px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 30px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      font-size: 35px;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
       z-index: 1000;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -233,23 +400,64 @@
     .floating-whatsapp:hover {
       background-color: #128C7E;
       color: white;
-      transform: scale(1.1);
+      transform: scale(1.1) rotate(-10deg);
       animation: none;
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
       100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
-    /* Footer */
+    /* Footer with Social Icons */
     footer {
-      background: var(--dark-color);
+      background: #011627;
       color: rgba(255,255,255,0.7);
-      padding: 30px 0;
-      text-align: center;
-      font-size: 0.9rem;
+      padding: 60px 0 30px;
+      font-size: 0.95rem;
+    }
+
+    .footer-brand {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--secondary-color);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 180, 216, 0.3);
+    }
+
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 30px 0;
     }
   </style>
 </head>
@@ -259,15 +467,14 @@
   <header>
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <!-- Replace with your actual logo img/FILTER TRADERS LOGO (1).png -->
         <a class="navbar-brand" href="#"><i class="fa-solid fa-droplet me-2"></i>Filter Traders</a>
-        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler bg-light border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="#home">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#about">About</a>
@@ -286,27 +493,27 @@
 
   <main>
     <!-- Hero Slider -->
-    <section class="con1 p-0" id="home">
+    <section class="p-0" id="home">
       <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
           <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="5000">
-            <!-- Placeholder for img/bgrnd1_0.png -->
+          <div class="carousel-item active" data-bs-interval="6000">
             <img src="https://images.unsplash.com/photo-1548834925-e48f8a27ae6f?q=80&w=2000" class="d-block w-100" alt="Clean Water">
-            <div class="carousel-caption d-none d-md-block" data-aos="fade-up" data-aos-duration="1500">
+            <div class="carousel-caption d-none d-md-block" data-aos="fade-up" data-aos-duration="1200">
               <h2>Pure Water, Pure Life</h2>
-              <p class="fs-5">Advanced Reverse Osmosis Technology for your home and business.</p>
+              <p class="fs-4 mb-4">Advanced Reverse Osmosis Technology for your home and business.</p>
+              <a href="#products" class="hero-btn">Explore Products</a>
             </div>
           </div>
-          <div class="carousel-item" data-bs-interval="5000">
-            <!-- Placeholder for img/bgg3.webp -->
+          <div class="carousel-item" data-bs-interval="6000">
             <img src="https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?q=80&w=2000" class="d-block w-100" alt="Water Splash">
             <div class="carousel-caption d-none d-md-block">
               <h2>Crystal Clear Quality</h2>
-              <p class="fs-5">Ensuring the health and safety of your family with every drop.</p>
+              <p class="fs-4 mb-4">Ensuring the health and safety of your family with every drop.</p>
+              <a href="#contact" class="hero-btn">Get Free Consultation</a>
             </div>
           </div>
         </div>
@@ -326,147 +533,164 @@
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">About Us</h2>
         <div class="row align-items-center mt-5">
-          <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-delay="200">
+          <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right" data-aos-delay="100">
+            <h3 class="fw-bold mb-4" style="color: var(--primary-color);">The Science of Pure Water</h3>
             <p class="about-text">
-              <strong>Reverse osmosis (RO)</strong> is a water purification process that uses a semi-permeable membrane to separate water molecules from other substances. RO applies pressure to overcome osmotic pressure that favors even distributions. 
+              <strong>Reverse osmosis (RO)</strong> is a state-of-the-art water purification process that uses a semi-permeable membrane to separate harmful molecules from your drinking water. By applying pressure to overcome natural osmotic pressure, we guarantee unparalleled purity.
             </p>
             <p class="about-text">
-              It can remove dissolved or suspended chemical species as well as biological substances (principally bacteria), and is used in industrial processes and the production of potable water. RO is most commonly known for its use in drinking water purification and removing the salt and other effluent materials from the water molecules.
+              Capable of removing dissolved chemicals, heavy metals, and biological substances (principally bacteria), RO is the gold standard for producing safe, potable water. Trust Filter Traders to remove impurities and deliver health to your glass.
             </p>
           </div>
-          <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-delay="400">
-            <!-- Placeholder for img/1.webp -->
-            <img src="https://images.unsplash.com/photo-1560331470-74c11f1c2ccc?q=80&w=1000" class="img-fluid about-img" alt="Water Purification">
+          <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-delay="300">
+            <div class="about-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1560331470-74c11f1c2ccc?q=80&w=1000" class="img-fluid about-img" alt="Water Purification Process">
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Products Section -->
-    <section class="products bg-light" id="products">
+    <section class="products" id="products">
       <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Our Products</h2>
+        <h2 class="section-title" data-aos="fade-up">Our Premium Range</h2>
         
         <!-- Row 1 -->
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 mb-5">
           
           <!-- Product 1 -->
           <div class="col" data-aos="fade-up" data-aos-delay="100">
             <div class="card product-card">
-              <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=800" class="card-img-top" alt="RO 6 Stage">
+              <span class="product-badge">Best Seller</span>
+              <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=800" alt="RO 6 Stage">
+              </div>
               <div class="card-body">
                 <h5 class="card-title">Reverse Osmosis 6 Stage</h5>
                 <p class="card-text">With Stand, Pressure Gauge and TDS Meter</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> 75 GPD Membrane</li>
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> 4.0 Gallons NSF Storage Tank</li>
-                <li class="list-group-item price-tag">Rs. 34,000 PKR</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> 75 GPD Membrane</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> 4.0 Gallons NSF Storage Tank</li>
               </ul>
+              <div class="price-wrapper">
+                <p class="price-tag">Rs. 34,000</p>
+                <a href="https://wa.me/+923477416751" target="_blank" class="btn btn-inquire">Inquire Now</a>
+              </div>
             </div>
           </div>
 
           <!-- Product 2 -->
           <div class="col" data-aos="fade-up" data-aos-delay="200">
             <div class="card product-card">
-              <img src="https://images.unsplash.com/photo-1574926053347-198cb080b0fb?q=80&w=800" class="card-img-top" alt="RO 5 Stage">
+              <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1574926053347-198cb080b0fb?q=80&w=800" alt="RO 5 Stage">
+              </div>
               <div class="card-body">
                 <h5 class="card-title">Reverse Osmosis 5 Stage</h5>
-                <p class="card-text">Standard Water Purifier System</p>
+                <p class="card-text">Standard Reliable Water Purifier System</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> 75 GPD Membrane</li>
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> Stainless Steel Check Valve</li>
-                <li class="list-group-item price-tag">Rs. 28,000 PKR</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> 75 GPD Membrane</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> Stainless Steel Check Valve</li>
               </ul>
+              <div class="price-wrapper">
+                <p class="price-tag">Rs. 28,000</p>
+                <a href="https://wa.me/+923477416751" target="_blank" class="btn btn-inquire">Inquire Now</a>
+              </div>
             </div>
           </div>
 
           <!-- Product 3 -->
           <div class="col" data-aos="fade-up" data-aos-delay="300">
             <div class="card product-card">
-              <img src="https://images.unsplash.com/photo-1594498653382-3511eb09cb14?q=80&w=800" class="card-img-top" alt="RO 6 Stage Premium">
+              <span class="product-badge" style="background:#ff9f1c;">Premium</span>
+              <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1594498653382-3511eb09cb14?q=80&w=800" alt="RO 6 Stage Premium">
+              </div>
               <div class="card-body">
                 <h5 class="card-title">Reverse Osmosis Premium</h5>
-                <p class="card-text">Water Purifier System 6 Stage</p>
+                <p class="card-text">Water Purifier System 6 Stage Advanced</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> 100 GPD Membrane</li>
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> 4.0 Gallons NSF Storage Tank</li>
-                <li class="list-group-item price-tag">Rs. 29,000 PKR</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> 100 GPD Membrane</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> 4.0 Gallons NSF Storage Tank</li>
               </ul>
+              <div class="price-wrapper">
+                <p class="price-tag">Rs. 29,000</p>
+                <a href="https://wa.me/+923477416751" target="_blank" class="btn btn-inquire">Inquire Now</a>
+              </div>
             </div>
           </div>
 
         </div>
 
         <!-- Row 2 -->
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 justify-content-center">
           
           <!-- Product 4 -->
           <div class="col" data-aos="fade-up" data-aos-delay="100">
             <div class="card product-card">
-              <img src="https://images.unsplash.com/photo-1564415315949-7a0c4c73aab4?q=80&w=800" class="card-img-top" alt="RO System 6">
+              <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1564415315949-7a0c4c73aab4?q=80&w=800" alt="RO System 6">
+              </div>
               <div class="card-body">
-                <h5 class="card-title">Reverse Osmosis System 6</h5>
+                <h5 class="card-title">RO System Series 6</h5>
                 <p class="card-text">With Stand and Pressure Gauge</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> 100 GPD Membrane</li>
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> Stainless Steel Check Valve</li>
-                <li class="list-group-item price-tag">Rs. 31,000 PKR</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> 100 GPD Membrane</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> Stainless Steel Check Valve</li>
               </ul>
+              <div class="price-wrapper">
+                <p class="price-tag">Rs. 31,000</p>
+                <a href="https://wa.me/+923477416751" target="_blank" class="btn btn-inquire">Inquire Now</a>
+              </div>
             </div>
           </div>
 
           <!-- Product 5 -->
           <div class="col" data-aos="fade-up" data-aos-delay="200">
             <div class="card product-card">
-              <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=800" class="card-img-top" alt="Aqua Safe Dual">
+              <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=800" alt="Aqua Safe Dual">
+              </div>
               <div class="card-body">
                 <h5 class="card-title">Aqua Safe Dual</h5>
                 <p class="card-text">Dual Water Filter System</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> High Dirt-Holding Capacity</li>
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> Extended Filter Life</li>
-                <li class="list-group-item price-tag">Rs. 5,500 PKR</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> High Dirt-Holding Capacity</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> Extended Filter Life</li>
               </ul>
+              <div class="price-wrapper">
+                <p class="price-tag">Rs. 5,500</p>
+                <a href="https://wa.me/+923477416751" target="_blank" class="btn btn-inquire">Inquire Now</a>
+              </div>
             </div>
           </div>
 
           <!-- Product 6 -->
           <div class="col" data-aos="fade-up" data-aos-delay="300">
             <div class="card product-card">
-              <img src="https://images.unsplash.com/photo-1573539828775-97e3760a5d49?q=80&w=800" class="card-img-top" alt="Aqua Safe Triple">
+              <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1573539828775-97e3760a5d49?q=80&w=800" alt="Aqua Safe Triple">
+              </div>
               <div class="card-body">
                 <h5 class="card-title">Aqua Safe Triple</h5>
-                <p class="card-text">Triple Water Filter</p>
+                <p class="card-text">Triple Filtration Defense</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> 100% Pure Polypropylene</li>
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> Maximum Filtration Capacity</li>
-                <li class="list-group-item price-tag">Rs. 8,000 PKR</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> 100% Pure Polypropylene</li>
+                <li class="list-group-item"><i class="fa-solid fa-circle-check text-info me-2"></i> Maximum Filtration Capacity</li>
               </ul>
-            </div>
-          </div>
-
-           <!-- Product 7 -->
-           <div class="col" data-aos="fade-up" data-aos-delay="400">
-            <div class="card product-card">
-              <img src="https://images.unsplash.com/photo-1600861194802-a2b11076bc51?q=80&w=800" class="card-img-top" alt="UF Ultra Filtration">
-              <div class="card-body">
-                <h5 class="card-title">UF Ultra Filtration</h5>
-                <p class="card-text">Advanced Water Purifier System</p>
+              <div class="price-wrapper">
+                <p class="price-tag">Rs. 8,000</p>
+                <a href="https://wa.me/+923477416751" target="_blank" class="btn btn-inquire">Inquire Now</a>
               </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> Filters 1 Gallon/Minute</li>
-                <li class="list-group-item"><i class="fa-solid fa-check text-success me-2"></i> Operates Smoothly Under Low Pressure</li>
-                <li class="list-group-item price-tag">Rs. 14,500 PKR</li>
-              </ul>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -475,14 +699,14 @@
     <section class="contact" id="contact">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
-        <div class="row justify-content-center mt-4">
-          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-8 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
             <div class="contact-wrapper">
               <i class="fa-brands fa-whatsapp contact-icon"></i>
-              <h3 class="fw-bold mb-3">WhatsApp Us</h3>
-              <p class="text-muted mb-4">Have questions about our RO systems? Send us a message directly.</p>
-              <a href="https://wa.me/+923477416751" target="_blank" class="btn btn-success btn-lg w-100 rounded-pill">
-                +92 347 7416751
+              <h3 class="fw-bold mb-3" style="color: var(--dark-color);">Chat on WhatsApp</h3>
+              <p class="text-muted mb-4 fs-6">Have questions about our RO systems? Need a custom installation? Message us directly for instant support.</p>
+              <a href="https://wa.me/+923477416751" target="_blank" class="btn btn-success btn-lg w-100 rounded-pill fw-bold shadow-sm">
+                <i class="fa-solid fa-message me-2"></i> +92 347 7416751
               </a>
             </div>
           </div>
@@ -497,9 +721,24 @@
   </a>
 
   <!-- Footer -->
-  <footer>
+  <footer class="text-center">
     <div class="container">
-      <p class="mb-0">&copy; 2026 Filter-Traders. All rights reserved.</p>
+      <a href="#" class="footer-brand text-decoration-none">
+        <i class="fa-solid fa-droplet" style="color: var(--secondary-color);"></i> Filter Traders
+      </a>
+      <p>Bringing advanced water purification technology right to your doorstep.</p>
+      
+      <!-- Social Media Icons Row -->
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+      
+      <div class="footer-divider"></div>
+      
+      <p class="mb-0 text-muted">&copy; 2026 Filter-Traders. All rights reserved. | Built for Health, Built for Life.</p>
     </div>
   </footer>
 
@@ -513,20 +752,21 @@
   <script>
     // Initialize AOS
     AOS.init({
-      duration: 1000,
+      duration: 800,
       once: true,
-      offset: 100
+      offset: 100,
+      easing: 'ease-in-out'
     });
 
     // Navbar background change on scroll
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar');
       if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(3, 4, 94, 1)';
-        navbar.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+        navbar.style.padding = '10px 0';
+        navbar.style.background = 'rgba(2, 62, 138, 0.98)';
       } else {
-        navbar.style.background = 'rgba(3, 4, 94, 0.95)';
-        navbar.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+        navbar.style.padding = '15px 0';
+        navbar.style.background = 'rgba(2, 62, 138, 0.85)';
       }
     });
   </script>
